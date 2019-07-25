@@ -1,0 +1,16 @@
+{
+    "name": "myquery-builder",
+    "version": "1.0.0",
+    "description": "NodeJS Express framework mysql query builder and executor library. Inspired by Laravel framework",
+    "preferGlobal": "true",
+    "main": "index.js",
+    "bin": { "myquery-builder": "index.js" },
+    "author": "Hasan Karaoğlu",
+    "license": "MIT",
+    "keywords": ["mysql", "query", "builder", "select", "where", "join", "insert", "update", "laravel"],
+    "repository" : {
+        "type": "git",
+        "url": "https://github.com/hkaraoglu/myquery-builder"
+    },
+    "engines": { "node": "*" }
+}
