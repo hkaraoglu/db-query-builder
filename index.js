@@ -159,7 +159,7 @@ class QueryBuilder
   {
     let result = await this.db.execute(this.sql, this.values);
     this.sql = "";
-    return {err: "", results: []};
+    return {err: result.message, results: result.data, success: result.success};
   }
 
 }

@@ -1,6 +1,6 @@
 {
     "name": "db-query-builder",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "NodeJS Express framework mysql query builder and executor library. Inspired by Laravel framework",
     "preferGlobal": "true",
     "main": "index.js",
