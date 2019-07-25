@@ -1,10 +1,11 @@
-# **myquery-builder**
 
+# **db-query-builder**
 NodeJS Express framework mysql query builder and executor library. Inspired by PHP Laravel Framework.
 
 
 **Initialize:**
 
+    var QueryBuilder = require('db-query-builder');  
     var db = new QueryBuilder(table, mysqlConnection));
     // mysqlConnection: Your mysql connection instance 
     // your primary table name to use after from
@@ -18,14 +19,12 @@ NodeJS Express framework mysql query builder and executor library. Inspired by P
     db.select()
       .where("address_id", "=", 1)
       .where("customer_id", "=", 134)
-      .get()
     
  If you want to select **specific** columns then:
 
 	db.select(["address_id", "firstname", "lastname", "zipCode"])
       .where("address_id", "=", 1)
       .where("customer_id", "=", 134)
-      .get()
 
    **UPDATE:**
 	   
@@ -60,7 +59,6 @@ If you want to join a table, then:
     db.select()
       .join("customer AS c", { first : "c.customer_id", operator: "=", "second" : "a.customer_id"})
       .where("a.customer_id", "=", 134)
-      .get()
 
 You can also use **leftJoin** and **rightJoin**	 functions to use other join types.
 
@@ -69,19 +67,16 @@ If you want to order results, then:
 
     db.select()
       .orderBy("firstname", "desc")
-      .get()
 
 **GROUP BY:**
   If you want to group results, then:
 
       db.select("COUNT(address_id)")
-        .groupBy("customer_id")
-        .get() 
+        .groupBy("customer_id") 
 or for multiple grouping:
 		
 	  db.select("COUNT(address_id)")
-        .groupBy(["customer_id", "zipCode"])
-        .get() 
+        .groupBy(["customer_id", "zipCode"]) 
 
 **HAVING:**
 If you want to filter group results, then:
@@ -90,19 +85,16 @@ If you want to filter group results, then:
     db.select("COUNT(address_id)")
       .groupBy("customer_id") 
       .having("zipCode", "<",  34000)
-      .get()
 
 **LIMIT:**
 If you want to limit records count then:
 
      db.select()
 	   .limit(100)
-	   .get()
 or
 
     db.select()
       .limit(0, 100)
-      .get()
 
  
 
