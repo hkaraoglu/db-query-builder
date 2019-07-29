@@ -157,9 +157,50 @@ class QueryBuilder
 
   async get()
   {
-    let result = await this.db.execute(this.sql, this.values);
+    let result = await this.execute(this.sql, this.values);
     this.sql = "";
     return {err: result.message, results: result.data, success: result.success};
+  }
+
+
+  async execute(sql, values)
+  {
+    var connection = this.db;
+    var result = {success : false, message : "", error_code: -1, data:{}};
+    return new Promise(async function (resolve, reject)
+    {
+      try
+      {
+        var results = await connection.query(sql, values, async function (error, results, fields) {
+          if (error)
+          {
+            console.log(error);
+            result.message = error.message;
+          }
+          else
+          {
+            if(results.affectedRows !== undefined)
+            {
+              if(results.affectedRows > 0)
+              {
+                result.success = true;
+              }
+            }
+            else
+            {
+              result.data = results;
+            }
+          }
+          resolve(result);
+        });
+
+      }
+      catch (e) {
+        console.log(e);
+        result.message = e.message;
+        resolve(result);
+      }
+    });
   }
 
 }
